@@ -18,3 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'TestController@test');
+
+Route::group([
+	// 'middleware'=> ['auth:admin'], 
+	'prefix'=>'admin', 
+	'namespace'=> 'Admin'
+],	function(){
+	Route::get('/', 'Dashboard@index')->name('admin.dashboard');
+});
+
+Route::group([
+	// 'middleware' => ['auth:user'],
+	'namespace' => 'Consumer'
+], function(){
+	Route::get('/','Dashboard@index')->name('public.dashboard');
+});

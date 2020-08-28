@@ -15,7 +15,7 @@ class CreateUserContactsTable extends Migration
     {
         Schema::create('user_contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->index();
             $table->string('contact');
             $table->string('contact_type')->default('phone');
             $table->timestamps();

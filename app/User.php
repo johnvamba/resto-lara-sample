@@ -6,14 +6,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
-use App\UserCredential\Trait\HasDetail;
-use App\UserCredential\Trait\HasContact;
-use App\UserCredential\Trait\HasAddress;
+use App\UserCredential\Traitable\HasDetail;
+use App\UserCredential\Traitable\HasContact;
+use App\UserCredential\Traitable\HasAddress;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes
+    use HasApiTokens, Notifiable, SoftDeletes,
         HasDetail, HasAddress, HasContact;
 
     /**
@@ -33,4 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getIsAdminAttribute()
+    {
+        return $this->type == 'admin';
+    }
 }

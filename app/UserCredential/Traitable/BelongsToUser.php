@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserCredential\Trait;
+namespace App\UserCredential\Traitable;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
