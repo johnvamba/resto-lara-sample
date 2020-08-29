@@ -17,7 +17,8 @@ class CreateSpacesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('type')->default('space');
-            $table->string('status')->default('inactive')->index(); 
+            $table->string('status')->default('inactive')->index();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

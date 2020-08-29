@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Reservation;
 
 use App\Model\Reservation\Space;
 use Illuminate\Http\Request;
+use App\Http\Resources\Reservation\ReserveResource;
+use App\Http\Controllers\Controller;
 
 class SpaceController extends Controller
 {
@@ -14,7 +16,7 @@ class SpaceController extends Controller
      */
     public function index()
     {
-        //
+        return ReserveResource::collection(Space::latest()->paginate(10));
     }
 
     /**

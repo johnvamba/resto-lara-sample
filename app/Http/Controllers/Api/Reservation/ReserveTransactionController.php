@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Reservation;
 
 use App\Model\Reservation\ReserveTransaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReserveTransactionController extends Controller
 {
@@ -41,10 +42,10 @@ class ReserveTransactionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserve_transact
      * @return \Illuminate\Http\Response
      */
-    public function show(ReserveTransaction $reserveTransaction)
+    public function show(ReserveTransaction $reserve_transact)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReserveTransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserve_transact
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReserveTransaction $reserveTransaction)
+    public function edit(ReserveTransaction $reserve_transact)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReserveTransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserve_transact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReserveTransaction $reserveTransaction)
+    public function update(Request $request, ReserveTransaction $reserve_transact)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReserveTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserve_transact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReserveTransaction $reserveTransaction)
+    public function destroy(ReserveTransaction $reserve_transact)
     {
         //
     }

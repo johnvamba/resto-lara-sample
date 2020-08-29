@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Reservation;
 
 use App\Model\Reservation\ReserveTransactionHistory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReserveTransactionHistoryController extends Controller
 {
@@ -41,10 +42,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserve_history
      * @return \Illuminate\Http\Response
      */
-    public function show(ReserveTransactionHistory $reserveTransactionHistory)
+    public function show(ReserveTransactionHistory $reserve_history)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserve_history
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReserveTransactionHistory $reserveTransactionHistory)
+    public function edit(ReserveTransactionHistory $reserve_history)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReserveTransactionHistoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserve_history
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReserveTransactionHistory $reserveTransactionHistory)
+    public function update(Request $request, ReserveTransactionHistory $reserve_history)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\ReserveTransactionHistory  $reserve_history
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReserveTransactionHistory $reserveTransactionHistory)
+    public function destroy(ReserveTransactionHistory $reserve_history)
     {
         //
     }

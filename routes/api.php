@@ -17,10 +17,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v0.1'], function() {
-	Route::post('login', 'Api\AuthController@login');
-	Route::post('register', 'Api\AuthController@register');
+Route::group(['prefix' => 'v0.1', 'namespace' => 'Api'], function() {
+	Route::post('login', 'AuthController@login');
+	Route::post('register', 'AuthController@register');
 	Route::group(['middleware' => 'auth:api'], function() {
-		Route::post('getUser', 'Api\AuthController@getUser');
+		Route::get('getUser', 'AuthController@getUser')->name('api.getuser');
+	});
+
+	Route::group(['namespace' => 'Reservation'], function() {
+		Route::name('api')->resource('space', 'SpaceController');
+		Route::name('api')->resource('reserve_transact', 'ReserveTransactionController');
+		Route::name('api')->resource('reserve_history', 'ReserveTransactionHistoryController');
 	});
 });
+
+// Route::group(['prefix'])

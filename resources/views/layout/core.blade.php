@@ -18,8 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
+    @stack('css')
 </head>
 <body>
     <div id="app">
@@ -63,4 +62,11 @@
         </main>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script type="text/javascript">
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = "{{!!csrf_token()!!}}";
+    axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+</script>
+@stack('script')
 </html>

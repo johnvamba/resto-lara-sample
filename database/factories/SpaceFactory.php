@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Space::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => "Space ". $faker->word,
+        'description' => $faker->paragraph(2, true)
     ];
 });
