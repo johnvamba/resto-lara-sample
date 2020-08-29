@@ -18,16 +18,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            // dd($guard, 'dashboard', auth()->user());
-            if($guard == 'admin'){
-
+            if($guard == 'admin')
                 return redirect()->route('admin.dashboard');
-            }
-
-                // dd('Wip', $guard);
+            
             return redirect()->route('public.dashboard');
         }
-                // dd('redirect to dashboard' , Auth::guard($guard)->check(), $guard);
 
         return $next($request);
     }

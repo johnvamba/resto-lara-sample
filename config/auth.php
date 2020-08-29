@@ -107,11 +107,11 @@ return [
             'expire' => 60,
         ],
 
-        'admin' => [
-            'provider' => 'admin',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
+        // 'admin' => [
+        //     'provider' => 'admin',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        // ],
     ],
 
 ];

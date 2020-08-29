@@ -15,6 +15,11 @@ class CreateReserveTransactionsTable extends Migration
     {
         Schema::create('reserve_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->nullableMorphs('client');
+            $table->unsignedBigInteger('space_id')->nullable()->index();
+            $table->datetime('reserved_at')->index();
+            $table->text('request')->nullable();
+            $table->string('status')->index()->nullable();
             $table->timestamps();
         });
     }

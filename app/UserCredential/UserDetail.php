@@ -4,7 +4,7 @@ namespace App\UserCredential;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
-use App\UserCredential\BelongsToUser;
+use App\UserCredential\Traitable\BelongsToUser;
 
 class UserDetail extends Model
 {

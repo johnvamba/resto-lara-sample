@@ -24,8 +24,11 @@ Route::group([
 	'prefix'=>'admin', 
 	'namespace'=> 'Admin'
 ],	function(){
-	Route::get('/login', 'Auth\LoginController@showLoginForm')->middleware('guest:admin')->name('admin.login');
-	Route::post('/login', 'Auth\LoginController@login')->middleware('guest:admin')->name('admin.login.post');
+	Route::get('/' , function(){
+		return redirect()->route('admin.dashboard');
+	});
+	Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+	Route::post('/login', 'Auth\LoginController@login')->name('admin.login.post');
 
 	Route::group(['middleware' => 'auth:admin'],
 		function(){

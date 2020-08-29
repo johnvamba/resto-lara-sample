@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Reservation;
+namespace App\Http\Controllers\Api\Reservation;
 
-use App\Reservation\ReserveTransactionHistory;
+use App\Model\Reservation\Space;
 use Illuminate\Http\Request;
 
-class ReserveTransactionHistoryController extends Controller
+class SpaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\Space  $space
      * @return \Illuminate\Http\Response
      */
-    public function show(ReserveTransactionHistory $reserveTransactionHistory)
+    public function show(Space $space)
     {
         //
     }
@@ -52,10 +52,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\Space  $space
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReserveTransactionHistory $reserveTransactionHistory)
+    public function edit(Space $space)
     {
         //
     }
@@ -64,10 +64,10 @@ class ReserveTransactionHistoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\Space  $space
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReserveTransactionHistory $reserveTransactionHistory)
+    public function update(Request $request, Space $space)
     {
         //
     }
@@ -75,10 +75,10 @@ class ReserveTransactionHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reservation\ReserveTransactionHistory  $reserveTransactionHistory
+     * @param  \App\Model\Reservation\Space  $space
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReserveTransactionHistory $reserveTransactionHistory)
+    public function destroy(Space $space)
     {
         //
     }

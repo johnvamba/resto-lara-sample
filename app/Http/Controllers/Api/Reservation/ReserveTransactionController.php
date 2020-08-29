@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Reservation;
+namespace App\Http\Controllers\Api\Reservation;
 
-use App\Reservation\ReserveTransaction;
+use App\Model\Reservation\ReserveTransaction;
 use Illuminate\Http\Request;
 
 class ReserveTransactionController extends Controller
@@ -41,7 +41,7 @@ class ReserveTransactionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
      * @return \Illuminate\Http\Response
      */
     public function show(ReserveTransaction $reserveTransaction)
@@ -52,7 +52,7 @@ class ReserveTransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
      * @return \Illuminate\Http\Response
      */
     public function edit(ReserveTransaction $reserveTransaction)
@@ -64,7 +64,7 @@ class ReserveTransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ReserveTransaction $reserveTransaction)
@@ -75,7 +75,7 @@ class ReserveTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reservation\ReserveTransaction  $reserveTransaction
+     * @param  \App\Model\Reservation\ReserveTransaction  $reserveTransaction
      * @return \Illuminate\Http\Response
      */
     public function destroy(ReserveTransaction $reserveTransaction)
