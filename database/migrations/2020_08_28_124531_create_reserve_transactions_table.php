@@ -17,6 +17,7 @@ class CreateReserveTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->nullableMorphs('client');
             $table->unsignedBigInteger('space_id')->nullable()->index();
+            $table->unsignedInteger('persons')->default(1);
             $table->datetime('reserved_at')->index();
             $table->text('request')->nullable();
             $table->string('status')->index()->nullable();

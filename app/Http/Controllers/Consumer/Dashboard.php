@@ -20,4 +20,9 @@ class Dashboard extends Controller
     public function index(Request $request){
     	return view('public.dashboard');
     }
+
+    public function histories(Request $request){
+
+        return view('public.histories');
+    }
 }
