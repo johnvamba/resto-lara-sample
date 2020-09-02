@@ -15,34 +15,14 @@
 </style>
 @endpush
 
-@section('dropdown-nav')
-	<li class="nav-item dropdown">
-	    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-	        {{ Auth::user()->username }} <span class="caret"></span>
-	    </a>
-
-	    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-	        <a class="dropdown-item" href="{{ route('logout') }}"
-	           onclick="event.preventDefault();
-	                         document.getElementById('logout-form').submit();">
-	            {{ __('Logout') }}
-	        </a>
-
-	        <a class="dropdown-item" href="#">My Reservations</a>
-
-	        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-	            @csrf
-	        </form>
-	    </div>
-	</li>
-@endsection
+@include('public.partial.dropdown-nav')
 
 @section('content')
-<div class="row" id="app" style="padding: 5px 25px">
+<div class="row" id="app">
 	<div class="col-md-8">
 		<h4>Reservations</h4>
 		<div class="row">
-			<div class="col-md-4 mb-3 space-card" v-for="space in spaces" :key="space.id">
+			<div class="col-md-6 mb-4 space-card" v-for="space in spaces" :key="space.id">
 				<div class="card">
 					<div class="card-body">
 						<h4 class="card-title">@{{ space.name }}</h5>
@@ -85,7 +65,7 @@
 			    <div class="form-group">
 			    	<label>Date Time</label>
 	                <div class='input-group date' id='datetimepicker1' data-provide="datetimepicker">
-	                    <input type='text' class="form-control" name="time" />
+	                    <input type='text' class="form-control" name="date"/>
 	                    <span class="input-group-addon">
 	                        <span class="glyphicon glyphicon-calendar"></span>
 	                    </span>
@@ -108,6 +88,7 @@
 
 @push('script')
 <script type="text/javascript">
+	Vue.config.devtools = true
 	var app = new Vue({
 		el: '#app',
 		data: {
@@ -134,9 +115,8 @@
 			submit: function(){
 				this.submitting = true;
 				axios.post("{{ route('public.post')}}", {
-					reserve:this.reserve,
+					reserve: this.reserve ? this.reserve.id : null,
 					date: this.date,
-					time: this.time,
 					persons: this.persons,
 					request: this.request
 				}).then(({data}) =>{
@@ -150,7 +130,8 @@
 		},
 		mounted: function() {
 			this.loadSpaces()
-			$('#datetimepicker1').datetimepicker();
+			$('#datetimepicker1').datetimepicker()
+				.on('dp.change', (e) => this.date = e.date.toString());
 		}
 	});
 	console.log('open')
