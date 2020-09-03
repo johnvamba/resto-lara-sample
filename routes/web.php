@@ -43,6 +43,8 @@ Route::group([
 	'middleware' => 'auth',
 	'namespace' => 'Consumer'
 ], function(){
+	Route::get('/reserve','Dashboard@histories')->name('public.histories');
+
 	Route::post('/reserve','ReservePost')->name('public.post');
 
 	Route::get('/home','Dashboard@index')->name('public.dashboard');

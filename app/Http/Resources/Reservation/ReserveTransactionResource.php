@@ -14,6 +14,17 @@ class ReserveTransactionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'persons' => $this->persons,
+            'reserved_at' => $this->reserved_at,
+            'request' => $this->request,
+            'status' => $this->status,
+            'client' => $this->whenLoaded('client'),
+            'space' => new ReserveResource( $this->whenLoaded('space') ),
+            'histories' => ReserveHistoryResource::collection( $this->whenLoaded('histories') )
+
+        ];
+        // return parent::toArray($request);
     }
 }

@@ -1,3 +1,9 @@
+@section('home-redirect')
+<a class="navbar-brand" href="{{ url('/dashboard') }}">
+    {{ config('app.name', 'Laravel') }}
+</a>
+@endsection
+
 @section('dropdown-nav')
 	<li class="nav-item dropdown">
 	    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -5,7 +11,7 @@
 	    </a>
 
 	    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-	        <a class="dropdown-item" href="#">My Reservations</a>
+	        <a class="dropdown-item" href="{{ route('public.histories')}}">My Reservations</a>
 	        <a class="dropdown-item" href="#">Settings</a> 
 	        <a class="dropdown-item" href="{{ route('logout') }}"
 	           onclick="event.preventDefault();

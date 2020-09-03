@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReserveTransaction extends Model
 {
+    protected $guarded = [];
+    
     public function space()
     {
     	return $this->belongsTo(Space::class);

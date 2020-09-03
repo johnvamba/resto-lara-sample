@@ -20,4 +20,16 @@ class Dashboard extends Controller
     public function index(Request $request){
     	return view('admin.dashboard');
     }
+
+    public function calendar(Request $request){
+        return view('admin.dashboard');
+    }
+
+    public function users(Request $request){
+        return view('admin.dashboard');
+    }
+    
+    public function settings(Request $request){
+        return view('admin.dashboard');
+    }
 }

@@ -22,7 +22,11 @@ class Dashboard extends Controller
     }
 
     public function histories(Request $request){
-
         return view('public.histories');
+    }
+
+    public function settings(Request $request)
+    {
+        return view('public.dashboard');
     }
 }

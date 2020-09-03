@@ -15,15 +15,18 @@
 @include('admin.partial.dropdown-nav')
 
 @section('content')
-<div class="row" id="app" style="padding: 5px 25px">
-	<div class="col-md-8 row">
-		<div class="col-md-4 mb-2 space-card" v-for="space in spaces" :key="space.id">
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">@{{ space.name }}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">@{{space.type}} <span class="label pull-right">@{{space.status}}</span></h6>
-					<p class="card-text">@{{space.description}}</p>
-					<a href="#" class="card-link">Reserve</a>
+<div class="row" id="app">
+	<div class="col-md-8">
+		<h4>Reservations</h4>
+		<div class="row">
+			<div class="col-md-6 mb-4 space-card" v-for="space in spaces" :key="space.id">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">@{{ space.name }}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">@{{space.type}} <span class="label pull-right">@{{space.status}}</span></h6>
+						<p class="card-text">@{{space.description}}</p>
+						<a href="#" class="card-link">Check Reservations</a>
+					</div>
 				</div>
 			</div>
 		</div>
