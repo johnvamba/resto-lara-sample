@@ -17,14 +17,13 @@ class ReserveTransactionResource extends JsonResource
         return [
             'id' => $this->id,
             'persons' => $this->persons,
-            'reserved_at' => $this->reserved_at,
+            'reserved_at' => $this->reserved_at->toDayDateTimeString(),
             'request' => $this->request,
             'status' => $this->status,
             'client' => $this->whenLoaded('client'),
             'space' => new ReserveResource( $this->whenLoaded('space') ),
-            'histories' => ReserveHistoryResource::collection( $this->whenLoaded('histories') )
-
+            'histories' => ReserveHistoryResource::collection( $this->whenLoaded('histories') ),
+            'created_at' => $this->created_at->toDateTimeString(),
         ];
-        // return parent::toArray($request);
     }
 }

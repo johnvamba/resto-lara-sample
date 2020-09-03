@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Consumer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Model\Reservation\Space;
+use App\Model\Reservation\ReserveTransaction;
+use App\Model\Reservation\ReserveTransactionHistory;
+
+use App\Http\Resources\Reservation\ReserveTransactionResource;
+
 class Dashboard extends Controller
 {
 	/**
@@ -22,7 +28,13 @@ class Dashboard extends Controller
     }
 
     public function histories(Request $request){
-        return view('public.histories');
+        $transactions = ReserveTransaction::where('client_id', auth()->user()->id)
+            ->latest()
+            ->with('space', 'histories');
+
+        // dd($transactions->get());
+        return view('public.histories')
+            ->with(['transactions' => ReserveTransactionResource::collection($transactions->paginate(20))]);
     }
 
     public function settings(Request $request)

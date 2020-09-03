@@ -20,7 +20,7 @@ class ReserveHistoryResource extends JsonResource
             'comments' => $this->id,
             'reserve_transaction' => new ReserveTransactionResource( $this->whenLoaded('reserve_transaction') ),
             'admin' => new ReserveTransactionResource( $this->whenLoaded('admin') ),
+            'created_at' => $this->created_at->toDateTimeString(),
         ];
-        // return parent::toArray($request);
     }
 }

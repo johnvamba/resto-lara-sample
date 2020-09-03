@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ReserveTransaction extends Model
 {
     protected $guarded = [];
+
+    protected $casts = [
+        'reserved_at' => 'datetime'
+    ];
     
     public function space()
     {

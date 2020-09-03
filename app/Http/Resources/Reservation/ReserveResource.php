@@ -22,7 +22,6 @@ class ReserveResource extends JsonResource
             'description' => $this->description,
             'created_at' => $this->created_at,
             'transactions' => ReserveTransaction::collection( $this->whenLoaded('transactions') ),
-        ]
-        // return parent::toArray($request);
+        ];
     }
 }

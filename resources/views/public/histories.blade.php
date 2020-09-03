@@ -22,16 +22,22 @@
 	<div class="col-md-8">
 		<h4>Reservations</h4>
 		<div class="row">
-			<div class="col-md-6 mb-4 space-card" v-for="space in spaces" :key="space.id">
+			@forelse($transactions as $transaction)
+			<div class="col-md-6 mb-4 space-card">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">@{{ space.name }}</h5>
-						<h5 class="card-subtitle mb-2 text-muted">@{{space.type}} <span class="label label-info pull-right">@{{space.status}}</span></h6>
-						<p class="card-text">@{{space.description}}</p>
-						<a href="#" @click.prevent="reserve = space" class="card-link">Cancel</a>
+						<h4 class="card-title text-info mx-0 my-2">{{ $transaction->reserved_at->toDayDateTimeString() }}</h4>
+						<hr class="m-0" />
+						<h4 class="card-title">{{ optional($transaction->space)->name ?? 'Unassigned' }}</h4>
+						<h5 class="card-subtitle mb-2 text-muted">Reservation for {{ $transaction->persons ?? 1 }} <span class="label label-info pull-right">{{ $transaction->status}}</span></h5>
+
+						<p class="card-text">{{ $transaction->request}}</p>
+						<a href="#" class="card-link">Cancel</a>
 					</div>
 				</div>
 			</div>
+			@empty
+			@endforelse
 		</div>
 	</div>
 	<div class="col-md-4"></div>
