@@ -19,7 +19,7 @@ class ReserveTransactionResource extends JsonResource
             'persons' => $this->persons,
             'reserved_at' => $this->reserved_at->toDayDateTimeString(),
             'request' => $this->request,
-            'status' => $this->status,
+            'status' => $this->reserved_at->lt(now()) ? $this->status : 'expired',
             'client' => $this->whenLoaded('client'),
             'space' => new ReserveResource( $this->whenLoaded('space') ),
             'histories' => ReserveHistoryResource::collection( $this->whenLoaded('histories') ),

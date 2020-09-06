@@ -26,4 +26,9 @@ class ReserveTransaction extends Model
     {
     	return $this->morphTo();
     }
+
+    public function recent_history()
+    {
+        return $this->hasOne(ReserveTransactionHistory::class);
+    }
 }

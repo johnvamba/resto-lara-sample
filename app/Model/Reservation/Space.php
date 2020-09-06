@@ -12,4 +12,9 @@ class Space extends Model
     {
     	return $this->hasMany(ReserveTransaction::class);
     }
+
+    public function recent_transaction()
+    {
+    	return $this->hasOne(ReserveTransaction::class);
+    }
 }

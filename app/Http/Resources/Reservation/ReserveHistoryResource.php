@@ -16,8 +16,8 @@ class ReserveHistoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'status' => $this->id,
-            'comments' => $this->id,
+            'status' => $this->status,
+            'comments' => $this->comments,
             'reserve_transaction' => new ReserveTransactionResource( $this->whenLoaded('reserve_transaction') ),
             'admin' => new ReserveTransactionResource( $this->whenLoaded('admin') ),
             'created_at' => $this->created_at->toDateTimeString(),

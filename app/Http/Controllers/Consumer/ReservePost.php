@@ -20,7 +20,6 @@ class ReservePost extends Controller
 
     	try 
     	{
-	    	// dd($request->all());
 	    	if(!$user = auth()->user())
 	    		throw new \Exception("No user requesting");
 

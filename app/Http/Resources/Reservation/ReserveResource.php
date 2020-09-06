@@ -20,8 +20,8 @@ class ReserveResource extends JsonResource
             'type' => $this->type,
             'status' => $this->status,
             'description' => $this->description,
-            'created_at' => $this->created_at,
-            'transactions' => ReserveTransaction::collection( $this->whenLoaded('transactions') ),
+            'created_at' => $this->created_at->toDateTimeString(),
+            'transactions' => ReserveTransactionResource::collection( $this->whenLoaded('transactions') ),
         ];
     }
 }
