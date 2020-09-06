@@ -21,6 +21,7 @@ class ReserveResource extends JsonResource
             'status' => $this->status,
             'description' => $this->description,
             'created_at' => $this->created_at->toDateTimeString(),
+            'url' => \route('admin.reservation.space', ['space' => $this->resource]),
             'transactions' => ReserveTransactionResource::collection( $this->whenLoaded('transactions') ),
         ];
     }

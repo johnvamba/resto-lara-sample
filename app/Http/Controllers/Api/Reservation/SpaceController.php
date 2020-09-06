@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Api\Reservation;
 
 use App\Model\Reservation\Space;
 use Illuminate\Http\Request;
-use App\Http\Resources\Reservation\ReserveResource;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Reservation\ReserveResource;
+use App\Http\Resources\Reservation\ReserveTransactionResource;
 
 class SpaceController extends Controller
 {
@@ -48,7 +49,15 @@ class SpaceController extends Controller
      */
     public function show(Space $space)
     {
-        //
+        // $space->load('transactions.histories');
+        // return new ReserveResource($space);
+        $transactions = $space->transactions()
+            ->latest();
+            // ->with(['histories' => function($histories){
+            //     $histories->latest();
+            // }]);
+    
+        return ReserveTransactionResource::collection($transactions->paginate(20));
     }
 
     /**
@@ -59,7 +68,7 @@ class SpaceController extends Controller
      */
     public function edit(Space $space)
     {
-        //
+        return new ReserveResource($space);
     }
 
     /**
@@ -71,7 +80,8 @@ class SpaceController extends Controller
      */
     public function update(Request $request, Space $space)
     {
-        //
+        
+        return new ReserveResource($space);
     }
 
     /**

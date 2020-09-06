@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Reservation;
 use App\Model\Reservation\ReserveTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Reservation\ReserveTransactionResource;
 
 class ReserveTransactionController extends Controller
 {
@@ -13,9 +14,14 @@ class ReserveTransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $rt = ReserveTransaction::orderBy('space_id', 'desc');
+
+        if($request->get('latest'))
+            $rt->latest();
+
+        return ReserveTransactionResource::collection($rt->paginate(20));
     }
 
     /**

@@ -111,6 +111,8 @@
 					this.spaces = data.data;
 					console.log('results', data.data);
 				})
+				// axios.get('/api/user', { params: {token:'9817b2c866b3e4d1b6c78b08261f520a3ea16a7666175fff01a42b673e793e7b1b5ba1fe34472b15'}}).then(()=>{}).catch(()=>{})
+				// axios.get('/oauth/tokens');
 			},
 			submit: function(){
 				this.submitting = true;
@@ -120,12 +122,18 @@
 					persons: this.persons,
 					request: this.request
 				}).then(({data}) =>{
+					alert('Reservation added. Please Wait');
+					this.date = null;
+					this.reserve.id = null
+					this.persons = null
+					
 					console.log('data res', data);
 				}).catch(()=>{
-
+					alert('Error in applying reservation');
 				}).finally(()=>{
 					this.submitting = false;
 				})
+
 			}
 		},
 		mounted: function() {

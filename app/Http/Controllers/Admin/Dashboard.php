@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Reservation\Space;
 
 class Dashboard extends Controller
 {
@@ -15,6 +16,10 @@ class Dashboard extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+    }
+
+    public function reservation(Request $request, Space $space = null){
+        return view('admin.reservation', compact('space'));
     }
     
     public function index(Request $request){

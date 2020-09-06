@@ -33,6 +33,8 @@ Route::group([
 	Route::group(['middleware' => 'auth:admin'],
 		function(){
 		Route::get('/dashboard', 'Dashboard@index')->name('admin.dashboard');
+		Route::get('/reservation', 'Dashboard@reservation')->name('admin.reservation');
+		Route::get('/reservation/{space}', 'Dashboard@reservation')->name('admin.reservation.space');
 	});
 });
 

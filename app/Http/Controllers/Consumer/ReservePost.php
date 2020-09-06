@@ -26,7 +26,8 @@ class ReservePost extends Controller
 	    	//Validator Here.. if need another request class if needed
 	    	$this->validateEntry($request);
 
-	    	$space = new Space($request->get('reserve') ?? []);
+	    	// $space = new Space($request->get('reserve') ?? []);
+	    	$space = Space::find($request->get('reserve'));
 	    	$date = Carbon::parse($request->get('date'));
 	    	// Initiate Reservations
 	    	$transaction = new ReserveTransaction([
@@ -38,7 +39,7 @@ class ReservePost extends Controller
 	    		'status' 		=> 'pending'
 	    	]);
 	    	//Date checker on confirmed dates here
-	    	if($space->exists && !$this->checkBookingCollisions($space, $date)){
+	    	if($space && !$this->checkBookingCollisions($space, $date)){
 	    		$transaction->space_id = $space->id;
 	    	}
 

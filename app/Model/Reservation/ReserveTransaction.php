@@ -31,4 +31,9 @@ class ReserveTransaction extends Model
     {
         return $this->hasOne(ReserveTransactionHistory::class);
     }
+
+    public static function scopeGetPending($query)
+    {
+        return $query->where('status', 'pending');
+    }
 }

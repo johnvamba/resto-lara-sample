@@ -15,6 +15,11 @@ class Space extends Model
 
     public function recent_transaction()
     {
-    	return $this->hasOne(ReserveTransaction::class);
+    	return $this->hasOne(ReserveTransaction::class)->latest();
     }
+
+    // public function resolveRouteBinding($value)
+    // {
+    //     return $this->where('id', $value)->first() ?? new static;
+    // }
 }

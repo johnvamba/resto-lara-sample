@@ -24,6 +24,7 @@ class Dashboard extends Controller
     }
 
     public function index(Request $request){
+        // dd(auth()->user()->tokens);
     	return view('public.dashboard');
     }
 
