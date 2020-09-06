@@ -89,4 +89,82 @@ class ReserveTransactionController extends Controller
     {
         //
     }
+
+    public function approve(ReserveTransaction $reserve_transact)
+    {
+        if(!$reserve_transact->exists)
+            throw new Exception("Missing transaction");
+            
+        $reserve_transact->update([
+            'status' => 'approved'
+        ]);
+
+        $reserve_transact->histories()
+            ->create([
+                'status' => 'approved',
+                'comments' => 'Reservation has been approved'
+            ]);
+
+        return new ReserveTransactionResource($reserve_transact);        
+    }
+
+    public function confirmed(ReserveTransaction $reserve_transact)
+    {
+        if(!$reserve_transact->exists)
+            throw new Exception("Missing transaction");
+
+        if($reserve_transact->status != 'approved')
+            throw new Exception("Reservation wasn't approved");
+            
+        $reserve_transact->update([
+            'status' => 'confirmed'
+        ]);
+
+        $reserve_transact->histories()
+            ->create([
+                'status' => 'confirmed',
+                'comments' => 'Reservation has been confirmed'
+            ]);
+
+        return new ReserveTransactionResource($reserve_transact);
+    }
+
+    public function occupied(ReserveTransaction $reserve_transact)
+    {
+        if(!$reserve_transact->exists)
+            throw new Exception("Missing transaction");
+
+        if($reserve_transact->status != 'confirmed')
+            throw new Exception("Reservation wasn't confirmed");
+            
+        $reserve_transact->update([
+            'status' => 'occupied'
+        ]);
+
+        $reserve_transact->histories()
+            ->create([
+                'status' => 'occupied',
+                'comments' => 'Reservation has been occupied'
+            ]);
+
+        return new ReserveTransactionResource($reserve_transact);
+    }
+
+    public function cancel(ReserveTransaction $reserve_transact)
+    {
+        if(!$reserve_transact->exists)
+            throw new Exception("Missing transaction");
+            
+        $reserve_transact->update([
+            'status' => 'cancelled'
+        ]);
+
+        $reserve_transact->histories()
+            ->create([
+                'status' => 'cancelled',
+                'comments' => 'Reservation has been cancelled'
+            ]);
+
+        return new ReserveTransactionResource($reserve_transact);
+    }
 }

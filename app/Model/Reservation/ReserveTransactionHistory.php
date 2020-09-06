@@ -18,4 +18,9 @@ class ReserveTransactionHistory extends Model
     {
     	return $this->belongsTo(Admin::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class, 'admin_id');
+    }
 }

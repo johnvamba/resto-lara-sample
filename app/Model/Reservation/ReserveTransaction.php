@@ -36,4 +36,11 @@ class ReserveTransaction extends Model
     {
         return $query->where('status', 'pending');
     }
+
+    public function getStatusAttribute($value) :string
+    {
+        if($this->reserved_at->lt(now()))
+            return 'expired';
+        return $value;
+    }
 }

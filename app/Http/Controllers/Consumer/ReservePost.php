@@ -45,6 +45,12 @@ class ReservePost extends Controller
 
 	    	if(!$transaction->save())
 	    		throw new \Exception("Error saving request");
+
+	    	$transaction->histories()
+	    		->create([
+					'status'	=> 'requesting',
+					'comments'	=> 'Initial request'
+	    		]);
 	    		
 	    	DB::commit();
 	    	return response()->json('Reservation added!', 200);

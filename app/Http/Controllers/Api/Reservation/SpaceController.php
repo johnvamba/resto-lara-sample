@@ -49,13 +49,8 @@ class SpaceController extends Controller
      */
     public function show(Space $space)
     {
-        // $space->load('transactions.histories');
-        // return new ReserveResource($space);
         $transactions = $space->transactions()
             ->latest();
-            // ->with(['histories' => function($histories){
-            //     $histories->latest();
-            // }]);
     
         return ReserveTransactionResource::collection($transactions->paginate(20));
     }

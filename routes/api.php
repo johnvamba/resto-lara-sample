@@ -26,7 +26,13 @@ Route::group(['prefix' => 'v0.1', 'namespace' => 'Api'], function() {
 
 	Route::group(['namespace' => 'Reservation'], function() {
 		Route::name('api')->resource('space', 'SpaceController');
+
+		Route::post('reserve_transact/{reserve_transact}/approve', 'ReserveTransactionController@approve');
+		Route::post('reserve_transact/{reserve_transact}/confirm', 'ReserveTransactionController@confirm');
+		Route::post('reserve_transact/{reserve_transact}/cancel', 'ReserveTransactionController@cancel');
+
 		Route::name('api')->resource('reserve_transact', 'ReserveTransactionController');
+
 		Route::name('api')->resource('reserve_history', 'ReserveTransactionHistoryController');
 	});
 });

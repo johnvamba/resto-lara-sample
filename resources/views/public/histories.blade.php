@@ -29,10 +29,20 @@
 						<h4 class="card-title text-info mx-0 my-2">{{ $transaction->reserved_at->toDayDateTimeString() }}</h4>
 						<hr class="m-0" />
 						<h4 class="card-title">{{ optional($transaction->space)->name ?? 'Unassigned' }}</h4>
-						<h5 class="card-subtitle mb-2 text-muted">Reservation for {{ $transaction->persons ?? 1 }} <span class="label label-info pull-right">{{ $transaction->status}}</span></h5>
-
+						<h5 class="card-subtitle mb-2 text-muted">Reservation for {{ $transaction->persons ?? 1 }} 
+							@if($transaction->status == 'expired')
+							<span class="label label-danger pull-right">{{ $transaction->status}}</span>
+							@else
+							<span class="label label-info pull-right">{{ $transaction->status}}</span>
+							@endif
+						</h5>
 						<p class="card-text">{{ $transaction->request}}</p>
+						@if($transaction->status != 'expired')
+							@if($transaction->status == 'approved')
+								<a href="#" class="card-link">Cancel</a>
+							@endif
 						<a href="#" class="card-link">Cancel</a>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -47,57 +57,57 @@
 @push('script')
 <script type="text/javascript">
 	Vue.config.devtools = true
-	var app = new Vue({
-		el: '#app',
-		data: {
-			spaces: [],
-			confirmation: null,
-			reserve: null,
-			date: null,
-			time: null,
-			persons: 1,
-			request: '',
-			submitting: false,
-			links: {
-				//for pagination
-			}
-		},
-		methods: {
-			loadSpaces:function(){
-				// axios.get("{{ route('api.space.index') }}")
-				// .then(({data})=>{
-				// 	this.spaces = data.data;
-				// 	console.log('results', data.data);
-				// })
-			},
-			submit: function(){
-				this.submitting = true;
-				axios.post("{{ route('public.post')}}", {
-					reserve: this.reserve ? this.reserve.id : null,
-					date: this.date,
-					persons: this.persons,
-					request: this.request
-				}).then(({data}) =>{
-					console.log('data res', data);
-				}).catch(()=>{
+	// var app = new Vue({
+	// 	el: '#app',
+	// 	data: {
+	// 		spaces: [],
+	// 		confirmation: null,
+	// 		reserve: null,
+	// 		date: null,
+	// 		time: null,
+	// 		persons: 1,
+	// 		request: '',
+	// 		submitting: false,
+	// 		links: {
+	// 			//for pagination
+	// 		}
+	// 	},
+	// 	methods: {
+	// 		loadSpaces:function(){
+	// 			// axios.get("{{ route('api.space.index') }}")
+	// 			// .then(({data})=>{
+	// 			// 	this.spaces = data.data;
+	// 			// 	console.log('results', data.data);
+	// 			// })
+	// 		},
+	// 		submit: function(){
+	// 			this.submitting = true;
+	// 			axios.post("{{ route('public.post')}}", {
+	// 				reserve: this.reserve ? this.reserve.id : null,
+	// 				date: this.date,
+	// 				persons: this.persons,
+	// 				request: this.request
+	// 			}).then(({data}) =>{
+	// 				console.log('data res', data);
+	// 			}).catch(()=>{
 
-				}).finally(()=>{
-					this.submitting = false;
-				})
-			},
-			cancellation: function(){
+	// 			}).finally(()=>{
+	// 				this.submitting = false;
+	// 			})
+	// 		},
+	// 		cancellation: function(){
 
-			},
-			confirmation: function(){
+	// 		},
+	// 		confirmation: function(){
 
-			}
-		},
-		mounted: function() {
-			this.loadSpaces()
-			$('#datetimepicker1').datetimepicker()
-				.on('dp.change', (e) => this.date = e.date.toString());
-		}
-	});
-	console.log('open')
+	// 		}
+	// 	},
+	// 	mounted: function() {
+	// 		this.loadSpaces()
+	// 		$('#datetimepicker1').datetimepicker()
+	// 			.on('dp.change', (e) => this.date = e.date.toString());
+	// 	}
+	// });
+	// console.log('open')
 </script>
 @endpush
