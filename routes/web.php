@@ -35,6 +35,9 @@ Route::group([
 		Route::get('/dashboard', 'Dashboard@index')->name('admin.dashboard');
 		Route::get('/reservation', 'Dashboard@reservation')->name('admin.reservation');
 		Route::get('/reservation/{space}', 'Dashboard@reservation')->name('admin.reservation.space');
+
+		Route::get('/transaction/{reserve_transact}', 'Dashboard@reserve_transact')->name('admin.reservation.history');
+
 	});
 });
 

@@ -23,8 +23,11 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">@{{ space.name }}</h5>
+						<hr class="m-3" />
+
 						<h6 class="card-subtitle mb-2 text-muted">@{{space.type}} <span class="label pull-right">@{{space.status}}</span></h6>
 						<p class="card-text">@{{space.description}}</p>
+						<hr class="m-3" />
 						<a :href="space.url" class="card-link">Check Reservations</a>
 					</div>
 				</div>
@@ -38,11 +41,13 @@
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title text-info mx-0 my-2">@{{ transaction.reserved_at }}</h4>
-					<hr class="m-0" />
+					<hr class="m-3" />
 					<h4 class="card-title">@{{ transaction.space ? transaction.space.name : 'UNDECIDED' }}</h4>
 					<h5 class="card-subtitle mb-2 text-muted">Reservation for @{{ transaction.persons ?? 1 }} <span class="label label-info pull-right">@{{ transaction.status }}</span></h5>
 
 					<p class="card-text">@{{ transaction.request}}</p>
+					<hr class="m-3" />
+
 					<a href="#" v-if="transaction.space != null" class="card-link ml-0">Approve</a>
 					<a href="#" class="card-link">Change</a>
 					<a href="#" class="card-link pull-right">Cancel</a>

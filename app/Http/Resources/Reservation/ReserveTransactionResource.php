@@ -19,11 +19,12 @@ class ReserveTransactionResource extends JsonResource
             'persons' => $this->persons,
             'reserved_at' => $this->reserved_at->toDayDateTimeString(),
             'request' => $this->request,
-            'status' => $this->reserved_at->lt(now()) ? $this->status : 'expired',
+            'status' => $this->reserved_at->gt(now()) ? $this->status : 'expired',
             'client' => $this->whenLoaded('client'),
             'space' => new ReserveResource( $this->whenLoaded('space') ),
             'histories' => ReserveHistoryResource::collection( $this->whenLoaded('histories') ),
             'created_at' => $this->created_at->toDateTimeString(),
+            'url' => \route('admin.reservation.history', ['reserve_transact' => $this->resource]),
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Model\Reservation\ReserveTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Reservation\ReserveTransactionResource;
+use App\Http\Resources\Reservation\ReserveHistoryResource;
 
 class ReserveTransactionController extends Controller
 {
@@ -16,7 +17,8 @@ class ReserveTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $rt = ReserveTransaction::orderBy('space_id', 'desc');
+        $rt = ReserveTransaction::orderBy('space_id', 'desc')
+            ->with('space');
 
         if($request->get('latest'))
             $rt->latest();
@@ -53,7 +55,9 @@ class ReserveTransactionController extends Controller
      */
     public function show(ReserveTransaction $reserve_transact)
     {
-        //
+        $histories = $reserve_transact->histories()->latest();
+
+        return ReserveHistoryResource::collection($histories->get());
     }
 
     /**
@@ -112,10 +116,13 @@ class ReserveTransactionController extends Controller
     {
         if(!$reserve_transact->exists)
             throw new Exception("Missing transaction");
+        
+        if($reserve_transact->status == 'cancelled')
+            throw new Exception("Reservation was cancelled");
 
         if($reserve_transact->status != 'approved')
             throw new Exception("Reservation wasn't approved");
-            
+
         $reserve_transact->update([
             'status' => 'confirmed'
         ]);
@@ -133,6 +140,9 @@ class ReserveTransactionController extends Controller
     {
         if(!$reserve_transact->exists)
             throw new Exception("Missing transaction");
+
+        if($reserve_transact->status == 'cancelled')
+            throw new Exception("Reservation was cancelled");
 
         if($reserve_transact->status != 'confirmed')
             throw new Exception("Reservation wasn't confirmed");

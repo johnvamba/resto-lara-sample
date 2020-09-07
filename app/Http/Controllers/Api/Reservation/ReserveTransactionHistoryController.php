@@ -15,7 +15,7 @@ class ReserveTransactionHistoryController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -47,7 +47,7 @@ class ReserveTransactionHistoryController extends Controller
      */
     public function show(ReserveTransactionHistory $reserve_history)
     {
-        //
+        
     }
 
     /**

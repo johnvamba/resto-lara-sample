@@ -124,7 +124,7 @@
 				}).then(({data}) =>{
 					alert('Reservation added. Please Wait');
 					this.date = null;
-					this.reserve.id = null
+					this.reserve = null
 					this.persons = null
 					
 					console.log('data res', data);

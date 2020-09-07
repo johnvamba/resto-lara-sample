@@ -27,21 +27,19 @@
 				<div class="card">
 					<div class="card-body">
 						<h4 class="card-title text-info mx-0 my-2">{{ $transaction->reserved_at->toDayDateTimeString() }}</h4>
-						<hr class="m-0" />
+						<hr class="m-3" />
 						<h4 class="card-title">{{ optional($transaction->space)->name ?? 'Unassigned' }}</h4>
 						<h5 class="card-subtitle mb-2 text-muted">Reservation for {{ $transaction->persons ?? 1 }} 
 							@if($transaction->status == 'expired')
-							<span class="label label-danger pull-right">{{ $transaction->status}}</span>
+							<span class="label label-danger pull-right">{{ $transaction->status }}</span>
 							@else
-							<span class="label label-info pull-right">{{ $transaction->status}}</span>
+							<span class="label label-info pull-right">{{ $transaction->status }}</span>
 							@endif
 						</h5>
 						<p class="card-text">{{ $transaction->request}}</p>
+						<hr class="m-3" />
 						@if($transaction->status != 'expired')
-							@if($transaction->status == 'approved')
-								<a href="#" class="card-link">Cancel</a>
-							@endif
-						<a href="#" class="card-link">Cancel</a>
+							<a href="#" class="card-link pull-right">Cancel</a>
 						@endif
 					</div>
 				</div>
