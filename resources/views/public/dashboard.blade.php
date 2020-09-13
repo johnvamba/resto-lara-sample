@@ -47,6 +47,7 @@
 			</div>
 			<div class="card-body" v-else>
 				<h4 class="card-title">@{{ reserve.name }}</h5>
+				<hr class="m-3" />
 				<h5 class="card-subtitle mb-2 text-muted">@{{reserve.type}} 
 					<span class="label label-info pull-right">@{{reserve.status}}</span>
 				</h6>
